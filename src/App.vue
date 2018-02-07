@@ -18,6 +18,7 @@
     </transition>
 
     <app-footer></app-footer>
+    
   </div>
 </template>
 

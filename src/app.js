@@ -14,26 +14,18 @@ import VueRouter from 'vue-router'
 import VueLazyload from 'vue-lazyload'
 
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import router from './router'
 // import { auth, database } from './firebase.config.js' - Uncomment if you need firebase
 import App from './App.vue'
 import store from './store'
 import * as types from './store/mutation-types'
-
+import WPMenu from './components/widgets/WPMenu.vue'
 Vue.use(VueLazyload)
 Vue.use(BootstrapVue)
 
-router.afterEach((to, from) => {
-  // Add a body class specific to the route we're viewing
-  $("body").removeClass (function (index, className) {
-    return (className.match (/(^|\s)vue--page--\S+/g) || []).join(' ');
-  });
-  $("body").addClass("vue--page--"+_.toLower(to.name))
-})
-
+// Global Components
+Vue.component('wpmenu', WPMenu)
 
 new Vue({
   el: '#app',
@@ -44,15 +36,5 @@ new Vue({
     this.$store.commit(types.RESET_LOADING_PROGRESS)
     this.$store.dispatch('getAllCategories')
     this.$store.dispatch('getAllPages')
-
-    // Once user is signed in/out, uncomment if you need Firebase authentication
-    // auth.onAuthStateChanged(user => {
-    //   if (user) {
-    //     this.$store.commit(types.LOGIN_USER)
-    //     this.$store.commit(types.STORE_FETCHED_USER, user)
-    //   } else {
-    //     this.$store.commit(types.LOGOUT_USER)
-    //   }
-    // })
   }
 })
