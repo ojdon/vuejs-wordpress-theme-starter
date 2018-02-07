@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Components
-import Home from '../components/Home'
+import Home from '../components/views/Home'
 
 Vue.use(Router)
 
@@ -25,5 +25,6 @@ const router = new Router({
     }
   }
 })
+
 
 export default router
