@@ -1,9 +1,9 @@
 <template>
   <header>
     <b-container class="py-3">
-      
-      <img fluid :src="logo" :alt="name" />
-      
+
+      <router-link to='/'><img fluid :src="logo" :alt="name" /></router-link>
+
     </b-container>
     <wpmenu name="header_menu"></wpmenu>
   </header>
