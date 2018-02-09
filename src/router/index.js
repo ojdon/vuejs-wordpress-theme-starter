@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 // Components
 import Home from '../components/views/Home'
+import Page from '../components/views/Page'
+import Post from '../components/views/Post'
 
 Vue.use(Router)
 
@@ -13,6 +15,17 @@ const router = new Router({
       name: 'Home',
       component: Home,
       // props: { pageContentID: 383 }
+    },
+    {
+      path: '/:page',
+      component: Page,
+      props: true
+    },
+    {
+      path: '/news/:post',
+      name: 'Post',
+      component: Post,
+      props: true
     }
   ],
   mode: 'history',
@@ -24,7 +37,7 @@ const router = new Router({
       return { x: 0, y: 0 }
     }
   }
-})
 
+})
 
 export default router
