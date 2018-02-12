@@ -5,7 +5,7 @@
 		<b-collapse is-nav id="nav_collapse">
 
 			<b-nav is-nav-bar class="mx-auto">
-				<b-nav-item v-for="menuItem in menu" :href="menuItem.url" :key="menuItem.id">{{menuItem.title}}</b-nav-item>
+				<b-nav-item v-for="menuItem in menu" v-bind:to="menuItem.url" :key="menuItem.id" >{{menuItem.title}}</b-nav-item>
 			</b-nav>
 
 		</b-collapse>
@@ -17,6 +17,7 @@ export default {
 	props: ["name"],
 	data() {
 		return {
+			origin: window.location.origin,
 			menu: [],
 			errors: []
 		}
@@ -28,6 +29,10 @@ export default {
   	.then(response => {
       // JSON responses are automatically parsed.
       this.menu = response.data
+      for(var i=0;i<this.menu.length;i++) {
+      	this.menu[i].url = this.menu[i].url.replace(this.origin,'');
+      }
+
   })
   	.catch(e => {
   		this.errors.push(e)
