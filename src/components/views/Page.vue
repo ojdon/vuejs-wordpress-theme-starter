@@ -1,9 +1,8 @@
 <template>
     <section class="home">
         <b-container class="">
-            <h1 class="mt-5 mb-3">{{ page.title.rendered }}</h1>
-            <div v-html="page.content.rendered"></div>
-
+            <h1 class="mt-5 mb-3"v-if="loaded === true" >{{ page.title.rendered }}</h1>
+            <div v-if="loaded === true" v-html="page.content.rendered"></div>
         </b-container>
     </section>
 </template>
@@ -13,7 +12,8 @@ export default {
 	data() {
 		return {
 			page: {},
-			errors: []
+			errors: [],
+      loaded: false
 		}
 	},
 
@@ -24,6 +24,7 @@ export default {
   	.then(response => {
       // JSON responses are automatically parsed.
       this.page = response.data[0]
+      this.loaded = true
   	})
   	.catch(e => {
   		this.errors.push(e)
