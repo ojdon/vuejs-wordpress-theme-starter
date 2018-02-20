@@ -31,6 +31,12 @@ export default {
   		this.errors.push(e)
   	})
 
+    head: {
+      title: {
+        inner: this.post.title.rendered
+      }
+    }
+
   }
 }
 </script>

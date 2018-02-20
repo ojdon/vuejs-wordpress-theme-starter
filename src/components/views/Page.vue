@@ -14,12 +14,11 @@ export default {
 			page: {},
 			errors: [],
       loaded: false
-		}
-	},
+    }
+  },
 
   // Fetches posts when the component is created.
   created() {
-
   	window.axios.get('/wp-json/wp/v2/pages?slug='+this.$route.params.page)
   	.then(response => {
       // JSON responses are automatically parsed.
@@ -29,6 +28,12 @@ export default {
   	.catch(e => {
   		this.errors.push(e)
   	})
+
+    head: {
+      title: {
+        inner: this.page.title.rendered
+      }
+    }
 
   }
 }

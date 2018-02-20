@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueHead from 'vue-head'
 
 // Components
 import Home from '../components/views/Home'
@@ -7,6 +8,7 @@ import Page from '../components/views/Page'
 import Post from '../components/views/Post'
 
 Vue.use(Router)
+Vue.use(VueHead)
 
 const router = new Router({
   routes: [

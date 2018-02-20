@@ -44,6 +44,23 @@ All of the code you're going to edit is located in `/src/`. From there it's brok
 
 All scripts and styles in `/src` are compiled down to the `/dist` directory, which is what you will deploy. **When you're ready to deploy don't deploy the src/ directory.**
 
+## Routes
+
+By default, this theme sets up three separate routes. One for the homepage, one for WordPress pages and one for WordPress posts. These routes can be found in `/src/router/index.js`
+
+In order to separate pages from posts, you'll need to change the permalinks settings. By default, we've created a `home` page and a `news` page. Next, set these up as the static pages via: 
+
+1. In the admin dashboard
+1. Go to `Settings > Reading` option
+1. Select `A static page (select below)` option for `Your homepage displays`.
+1. Set `Homepage:` as `Home`
+1. Set `Posts:` as `News`
+1. Press `Saves Changes` button
+1. Go to `Settings > Permalinks`
+1. Select the permalinks structure as `Custom Structure` with the entry `/news/%postname%/`
+1. PRess the `Save Changes` button
+
+
 ## External References
 - [Creating Vuex Modules](https://vuex.vuejs.org/en/modules.html)
 - [vue-router](https://github.com/vuejs/vue-router)
