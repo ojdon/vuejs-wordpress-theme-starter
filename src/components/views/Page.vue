@@ -1,7 +1,7 @@
 <template>
     <section class="home">
         <b-container class="">
-            <h1 class="mt-5 mb-3"v-if="loaded === true" >{{ page.title.rendered }}</h1>
+            <h1 v-if="loaded === true" class="mt-5 mb-3" >{{ page.title.rendered }}</h1>
             <div v-if="loaded === true" v-html="page.content.rendered"></div>
         </b-container>
     </section>
