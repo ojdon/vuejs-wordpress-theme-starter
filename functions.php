@@ -76,6 +76,14 @@ add_action( 'rest_api_init', function () {
 		'methods' => 'GET',
 		'callback' => 'get_logo_height',
 	) );
+	register_rest_route( 'static/v1', '/frontpage', array(
+		'methods' => 'GET',
+		'callback' => 'get_frontpage',
+	) );
+	register_rest_route( 'static/v1', '/posts_page', array(
+		'methods' => 'GET',
+		'callback' => 'get_posts_page',
+	) );
 } );
 
 function get_logo( $data ) {
@@ -120,4 +128,22 @@ function get_logo_height( $data ) {
 	}
 	$height = $image[2];
 	return $height;
+}
+
+function get_frontpage($data) {
+	$page = get_page(get_option( 'page_on_front' ));
+
+	if ( empty( $page ) ) {
+		return new WP_Error( 'no_frontpage', 'No frontpage. Please select a static Homepage via: Wp Admin > Settings > Reading', array( 'status' => 404 ) );
+	}
+	return $page;
+}
+
+function get_posts_page($data) {
+	$page = get_page(get_option( 'page_for_posts' ));
+
+	if ( empty( $page ) ) {
+		return new WP_Error( 'no_posts_page', 'No posts page. Please select a static Posts page via: Wp Admin > Settings > Reading', array( 'status' => 404 ) );
+	}
+	return $page;
 }
