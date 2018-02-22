@@ -131,8 +131,7 @@ function get_logo_height( $data ) {
 }
 
 function get_frontpage($data) {
-	$page = get_page(get_option( 'page_on_front' ));
-
+	$page = get_option( 'page_on_front' );
 	if ( empty( $page ) ) {
 		return new WP_Error( 'no_frontpage', 'No frontpage. Please select a static Homepage via: Wp Admin > Settings > Reading', array( 'status' => 404 ) );
 	}
@@ -140,8 +139,7 @@ function get_frontpage($data) {
 }
 
 function get_posts_page($data) {
-	$page = get_page(get_option( 'page_for_posts' ));
-
+	$page = get_option( 'page_for_posts' );
 	if ( empty( $page ) ) {
 		return new WP_Error( 'no_posts_page', 'No posts page. Please select a static Posts page via: Wp Admin > Settings > Reading', array( 'status' => 404 ) );
 	}

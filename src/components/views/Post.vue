@@ -1,9 +1,9 @@
 <template>
     <section class="home">
          <vue-headful v-if="loaded === true"
-            :title="post.title.rendered"
-            :description="post.title.rendered"
-            :url="$route.path"
+            :title="post.yoast_meta.yoast_wpseo_title"
+            :description="post.yoast_meta.yoast_wpseo_metadesc"
+            :url="post.yoast_meta.yoast_wpseo_canonical"
         />
         <b-container class="">
             <h1 v-if="loaded === true" class="mt-5 mb-3">{{ post.title.rendered }}</h1>
@@ -31,7 +31,6 @@ export default {
       // JSON responses are automatically parsed.
       this.post = response.data[0]
       this.loaded = true
-      //document.title = this.post.title.rendered +' | '+ document.title
   	})
   	.catch(e => {
   		this.errors.push(e)

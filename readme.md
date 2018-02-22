@@ -27,7 +27,7 @@ There are some useful plugins that are required for this theme. In order to inst
 
 ### Install plugins via WP-Cli
 
-`wp plugin install wp-api-menus acf-to-rest-api wp-rest-api-frontpage --activate`
+`wp plugin install wp-api-menus acf-to-rest-api wp-rest-api-frontpage wp-pwa-yoast-seo wordpress-seo --activate`
 
 Or...
 
@@ -43,7 +43,9 @@ Or...
     "require": {
         "wpackagist-plugin/wp-api-menus":"*",
         "wpackagist-plugin/acf-to-rest-api":"*",
-        "wpackagist-plugin/wp-rest-api-frontpage":"*"
+        "wpackagist-plugin/wp-rest-api-frontpage":"*",
+        "wpackagist-plugin/wp-pwa-yoast-seo":"*",
+        "wpackagist-plugin/wordpress-seo":"*"
     }
 }
 

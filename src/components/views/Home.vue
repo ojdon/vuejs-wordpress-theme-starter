@@ -1,9 +1,9 @@
 <template>
     <section class="home">
         <vue-headful v-if="loaded === true"
-            :title="page.post_title"
-            :description="page.post_title"
-            :url="$route.path"
+        :title="page.yoast_meta.yoast_wpseo_title"
+        :description="page.yoast_meta.yoast_wpseo_metadesc"
+        :url="page.yoast_meta.yoast_wpseo_canonical"
         />
         <b-jumbotron header="Vue.JS Wordpress Theme" lead="Bootstrap Vue Included!" class="text-center mb-5 py-5">
         </b-jumbotron>
@@ -35,6 +35,7 @@ import PagesWidget from '../widgets/Pages'
 export default {
     data() {
         return {
+            id: 0,
             page: {},
             errors: [],
             loaded: false
@@ -47,11 +48,18 @@ export default {
     beforeCreate() {
         window.axios.get('wp-json/static/v1/frontpage')
         .then(response => {
-      // JSON responses are automatically parsed.
-      this.page = response.data
-      this.loaded = true
-      
-  })
+            // JSON responses are automatically parsed.
+            this.id = response.data
+            window.axios.get('wp-json/wp/v2/pages/'+this.id)
+            .then(response => {
+                // JSON responses are automatically parsed.
+                this.page = response.data
+                this.loaded = true
+            })
+            .catch(e => {
+                this.errors.push(e)
+            })
+        })
         .catch(e => {
             this.errors.push(e)
         })
