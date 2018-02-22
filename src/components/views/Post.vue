@@ -15,30 +15,41 @@
 
 <script>
 export default {
-	data() {
-		return {
-			post: {},
-			errors: [],
-      loaded: false
-		}
-	},
-
+  data() {
+    return {
+      post: {},
+      loaded: false,
+      methods: {
+        getData: function(slug, callback) {
+          window.axios.get('/wp-json/wp/v2/posts?slug='+slug)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            callback(response.data[0])
+          })
+          .catch(e => {
+            console.log(e)
+          })
+        }
+      },
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      var _this = this
+      this.methods.getData(to.params.post, function(data){
+        _this.post = data
+        _this.loaded = true
+      })
+    }
+  },
   // Fetches posts when the component is created.
-  beforeCreate() {
-
-  	window.axios.get('/wp-json/wp/v2/posts?slug='+this.$route.params.post)
-  	.then(response => {
-      // JSON responses are automatically parsed.
-      this.post = response.data[0]
-      this.loaded = true
-  	})
-  	.catch(e => {
-  		this.errors.push(e)
-  	})
-
-    
-
-  }
+  created() {
+    var _this = this
+    this.methods.getData(this.$route.params.post, function(data){
+      _this.post = data 
+      _this.loaded = true
+    })
+  },
 }
 </script>
 

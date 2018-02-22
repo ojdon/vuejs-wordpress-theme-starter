@@ -45,7 +45,7 @@ export default {
         RecentPostsWidget,
         PagesWidget
     },
-    beforeCreate() {
+    created() {
         window.axios.get('wp-json/static/v1/frontpage')
         .then(response => {
             // JSON responses are automatically parsed.
@@ -57,11 +57,11 @@ export default {
                 this.loaded = true
             })
             .catch(e => {
-                this.errors.push(e)
+                console.log(e)
             })
         })
         .catch(e => {
-            this.errors.push(e)
+            console.log(e)
         })
     }
 }
