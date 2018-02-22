@@ -1,5 +1,10 @@
 <template>
     <section class="home">
+        <vue-headful v-if="loaded === true"
+            :title="page.post_title"
+            :description="page.post_title"
+            :url="$route.path"
+        />
         <b-jumbotron header="Vue.JS Wordpress Theme" lead="Bootstrap Vue Included!" class="text-center mb-5 py-5">
         </b-jumbotron>
         <b-container>
@@ -28,11 +33,29 @@ import RecentPostsWidget from '../widgets/RecentPosts'
 import PagesWidget from '../widgets/Pages'
 
 export default {
+    data() {
+        return {
+            page: {},
+            errors: [],
+            loaded: false
+        }
+    },
     components: {
         RecentPostsWidget,
         PagesWidget
+    },
+    beforeCreate() {
+        window.axios.get('wp-json/static/v1/frontpage')
+        .then(response => {
+      // JSON responses are automatically parsed.
+      this.page = response.data
+      this.loaded = true
+      
+  })
+        .catch(e => {
+            this.errors.push(e)
+        })
     }
-    
 }
 </script>
 
