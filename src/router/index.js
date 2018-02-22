@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueHead from 'vue-head'
+import vueHeadful from 'vue-headful';
 
 // Components
 import Home from '../components/views/Home'
@@ -8,7 +8,7 @@ import Page from '../components/views/Page'
 import Post from '../components/views/Post'
 
 Vue.use(Router)
-Vue.use(VueHead)
+Vue.component('vue-headful', vueHeadful);
 
 const router = new Router({
   routes: [
@@ -39,6 +39,7 @@ const router = new Router({
       return { x: 0, y: 0 }
     }
   }
+
 
 })
 
