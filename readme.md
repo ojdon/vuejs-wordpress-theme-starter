@@ -22,6 +22,33 @@ A true WordPress theme with the guts ripped out and replaced with Vue. Based on 
     `npm run watch` for development
     `npm run production` when you're ready to deploy the theme.
 
+## Dependencies & Requirements
+There are some useful plugins that are required for this theme. In order to install them, use [WP-cli](http://wp-cli.org/#installing) or [WPackagist](https://wpackagist.org/):
+
+### Install plugins via WP-Cli
+
+`wp plugin install wp-api-menus acf-to-rest-api wp-rest-api-frontpage --activate`
+
+Or...
+
+### Install plugins via WPackagist
+```
+{
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/wp-api-menus":"*",
+        "wpackagist-plugin/acf-to-rest-api":"*",
+        "wpackagist-plugin/wp-rest-api-frontpage":"*"
+    }
+}
+
+```
+
 ## Usage
 
 - Open up `src/app.js` this is the main JS file for the app and will give you a glimpse into what's going on behind the scenes.
@@ -48,7 +75,7 @@ All scripts and styles in `/src` are compiled down to the `/dist` directory, whi
 
 By default, this theme sets up three separate routes. One for the homepage, one for WordPress pages and one for WordPress posts. These routes can be found in `/src/router/index.js`
 
-In order to separate pages from posts, you'll need to change the permalinks settings. By default, we've created a `home` page and a `news` page. Next, set these up as the static pages via: 
+In order to separate pages from posts, you'll need to change the permalinks settings. By default, we've created a `home` page and a `news` page. Next, set these up as the static pages via:
 
 1. In the admin dashboard
 1. Go to `Settings > Reading` option
@@ -58,7 +85,7 @@ In order to separate pages from posts, you'll need to change the permalinks sett
 1. Press `Saves Changes` button
 1. Go to `Settings > Permalinks`
 1. Select the permalinks structure as `Custom Structure` with the entry `/news/%postname%/`
-1. PRess the `Save Changes` button
+1. Press the `Save Changes` button
 
 
 ## External References
